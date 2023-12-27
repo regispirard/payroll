@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2024 TINCID (Régis Pirard)
+     License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html). -->
+<odoo>
+
+  <record id="res_config_settings_view_form" model="ir.ui.view">
+    <field
+            name="name"
+        >res.config.settings.view.form.inherit.hr.payroll (in payroll_structure_template)</field>
+    <field name="model">res.config.settings</field>
+    <field name="priority" eval="40" />
+    <field name="inherit_id" ref="payroll.res_config_settings_view_form" />
+    <field name="arch" type="xml">
+      <xpath expr="//div[@data-key='payroll']" position="inside">
+        <h2>Salary Structures</h2>
+        <div
+                    class="row mt16 o_settings_container"
+                    name="salary_structures_setting_container"
+                >
+          <div class="col-12 col-lg-6 o_setting_box" id="salary_structures">
+              <div class="o_setting_right_pane">
+                  <label for="payroll_structure_template_ids" />
+                  <span
+                                class="fa fa-lg fa-building-o"
+                                title="Values set here are company-specific."
+                                role="img"
+                                aria-label="Values set here are company-specific."
+                                groups="base.group_multi_company"
+                            />
+                  <div class="row">
+                      <div class="text-muted col-lg-8">
+                          Set the template salary strucutres to manage your employees payroll.
+                      </div>
+                  </div>
+                  <div class="content-group">
+                      <div class="mt16">
+                          <field
+                                        name="payroll_structure_template_ids"
+                                        string="Payroll Structure Template"
+                                        required="1"
+                                        widget="many2many_tags"
+                                        class="o_light_label"
+                                    />
+                      </div>
+                      <button
+                                    class="btn-default"
+                                    type="object"
+                                    name="load_update_salary_structure"
+                                    string="Load and update Salary Structure"
+                                />
+                  </div>
+              </div>
+          </div>
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+</odoo>
