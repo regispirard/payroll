@@ -29,10 +29,7 @@ Example :
     <field name="amount_python_compute">result = contract.wage</field>
   </record>
 
-#. Deploy and customize the templates across your companies as required.
-This can be achieved trough Odoo UI, but also trough data files : 
-
-<!-- Salary Structure templates -->
+  <!-- Salary Structure templates -->
 
   <record id="structure_l10n_country_struct1" model="hr.payroll.structure.template">
     <field name="code">STRUCT1</field>
@@ -45,3 +42,20 @@ This can be achieved trough Odoo UI, but also trough data files :
         />
   </record>
 
+
+#. Deploy and customize the templates across your companies as required.
+This can be achieved trough Odoo UI, but also trough data files.
+
+Example : 
+
+  <!-- Load Belgian template for Belgian Companies -->
+
+  <function
+        model="res.company"
+        name="load_country_salary_structures_company"
+        eval="(
+            [ref('base.main_company')],
+            ref('structure_l10n_be_payroll_base_1'),
+            ref('base.be'),
+            )"
+    />
